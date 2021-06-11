@@ -34,8 +34,8 @@ if (verProdutos.toUpperCase() === 'S') {
     //vamos filtrar a categoria desejada
     const categorias = produtos.filter(item => item.categoria === qualCategoria)
 
-    console.table(categorias); 
-} else { (verProdutos.toUpperCase() !== 'S') 
+    console.table(categorias);
+} else { (verProdutos.toUpperCase() !== 'S')
     console.log('Esses são nossos produtos disponiveis!')
     console.table(produtos)
 }
@@ -87,12 +87,16 @@ const shopping = () => {
     const produtosCarrinho = { ...findingId, quantidade: qtdItems}
     carrinho.push(produtosCarrinho)
 
-    //validação para continuar comprando
+    //validação para continuar comprando - checa se o usuário possue cupom e o valor -
     const continueComprando = read.question('Deseja inserir mais algum produto no carrinho? (Digite S ou N): ')
     const continueComprandoFormat = continueComprando.toLowerCase()
 
-    if (continueComprandoFormat === "n") {
-        cupom = parseInt(read.question('Digite o valor do seu cupom de desconto: '))
+    if (continueComprandoFormat === 'n') {
+        cupomCheck = read.question('Você possue cupom de desconto: (S/N)').toLowerCase(); {
+            if (cupomCheck === 's'){
+                cupom = parseInt(read.question('Digite o valor do seu cupom de desconto: '))
+            }
+        }
     } else {
         shopping()
     }
